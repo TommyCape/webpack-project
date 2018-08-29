@@ -1,0 +1,31 @@
+@import "blast_utility/core.scss";
+@import 'byomicons/stylesheet.css';
+
+.hello {
+  color: #f00;
+  font-size: 50px;
+  display: flex;
+}
+.ciccio2{
+  font-size: 30px;
+  box-sizing: border-box;
+  .exa2{
+    color:#000;
+    transform: translate(-50%);
+  }
+  .pippo2{
+    color:#f00
+  }
+  .ciao2{
+    font-size: 30px;
+  }
+}
+.off-slider{
+  width: 300px;
+}
+
+
+@import '~font-awesome/css/font-awesome.min.css';
+@import '~swiper/dist/css/swiper.min.css';
+@import '~swipebox/src/css/swipebox.min.css';
+@import '~jquery-ui/themes/base/theme.css';

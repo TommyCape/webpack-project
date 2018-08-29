@@ -1,0 +1,746 @@
+$mw_1250: 1250px;
+
+$media-desktop-big: "screen and (max-width : 1400px)";
+$media-desktop: "screen and (max-width : 1200px)";
+$media-tablet: "screen and (max-width : 1024px)";
+$media-mobile: "screen and (max-width : 750px)";
+
+/*
+$property => all o proprietà da transitare
+ $s => secondi (es: 0.5s)
+ $ese => secondi ese (es: 0.5s)
+*/
+@mixin trans($property,$s,$ese)
+{
+  @if $property != all{
+  -o-transition:  $property $s ease $ese;
+  -moz-transition: $property $s ease $ese;
+  -ms-transition: $property $s ease $ese;
+  -webkit-transition: $property $s ease $ese;
+  transition: $property $s ease $ese;
+  }
+  @else{
+    -moz-transition: all $s ease $ese;
+    -ms-transition: all $s ease $ese;
+    -webkit-transition: all $s ease $ese;
+    -o-transition: all $s ease $ese;
+    transition: all $s ease $ese;
+  }
+}
+
+/*
+tag picture per img
+*/
+@mixin picture(){
+    picture {
+      position: relative;
+      height:100%;
+      width: 100%;
+      overflow: hidden;
+      display: inline-block;
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+         object-fit: cover;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+@mixin cdtop(){
+  .cd-top{
+    position: fixed;bottom: 146px;right: 47px;white-space: nowrap;visibility: hidden; opacity: 0;-webkit-transition: opacity .3s 0s, visibility 0s .3s;-o-transition: opacity .3s 0s, visibility 0s .3s;transition: opacity .3s 0s, visibility 0s .3s; z-index:100; border-radius:100%;
+    &.fa{
+      font-size: 40px;
+      color: #000000;
+      cursor: pointer;
+    }
+
+  }
+  .cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {-webkit-transition: opacity .3s 0s, visibility 0s 0s;-o-transition: opacity .3s 0s, visibility 0s 0s;transition: opacity .3s 0s, visibility 0s 0s;}
+  .cd-top.cd-is-visible{visibility: visible;opacity: 1;}
+  .cd-top.cd-fade-out{opacity: .5;}
+  .no-touch .cd-top:hover{background-color: #e86256; opacity: 1;}
+}
+
+
+
+/*
+ $width => larghezza li
+ $height => altezza li
+ $padding => padding li
+ $backgroundcolor => background li
+ $marginbottom => margin bottom li
+ $heightimg => altezza immagine
+*/
+@mixin elenco_offerte($width,$height,$padding,$backgroundcolor,$marginbottom,$heightimg){
+  li{
+    float: left;
+    width: $width;
+    height: $height;
+    padding: $padding;
+    background-color: $backgroundcolor;
+    text-align: center;
+    margin-bottom: $marginbottom;;
+    picture{
+      height: $heightimg;
+    }
+    &:nth-child(2n){
+      float: right;
+    }
+  @media #{$media-tablet}{
+        width: 100%;
+      }
+  }
+}
+
+
+/*
+ $fontsize => font size
+ $color => colore label
+ $fontfamily => font family
+ $lineheight => line height
+*/
+
+@mixin txt($fontsize,$color,$fontfamily,$lineheight){
+  font-size: $fontsize;
+  color: $color;
+  font-family: $fontfamily;
+  line-height: $lineheight;
+}
+
+
+
+@mixin parallax(){
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @media #{$media-mobile}{
+    background-attachment: initial;
+    }
+  }
+
+  /*
+  breadcrumb
+   $font-size => font size
+   $margin-right => margin-right
+   $color => colore label
+   $transform => Uppercase, Capitalize ecc
+  */
+
+@mixin breadcrumb($color,$margin-right,$font-size){
+  .breadcrumb{
+      text-align: center;
+      position: relative;
+      top: -35px;
+    li{
+      font-weight: 500;
+      display: inline-block;
+      position: relative;
+      margin-right: $margin-right;
+
+      a{
+        color: $color;
+        text-transform: uppercase;
+        font-size: $font-size;
+      }
+      &:after{
+        content: '>';
+      position: relative;
+      top: 1px;
+      font-size: 15px;
+      left: 4px;
+      }
+      &:last-child{
+        &:after{
+          content: '';
+        }
+        a{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+/*
+MENU
+$margin => margine tra le label
+ $fontsize => font size
+ $color => colore label
+ $fontfamily => font family
+ $transform => Uppercase, Capitalize ecc
+*/
+@mixin menu($margin,$fontsize,$color,$fontfamily,$transform){
+  ul{
+    li{
+      position: relative;
+      display: inline-block;
+      margin-right: $margin;
+      &:hover{
+        ul{
+        //max-height: 500px;
+      }
+      }
+      &:last-child{
+        margin-right: 0px;
+      }
+      a{
+        text-decoration: none;
+        font-size: $fontsize;
+        color: $color;
+        font-family: $fontfamily,sans-serif;
+        text-transform: $transform;
+      }
+    }
+  }
+}
+
+/*
+ $fontsize => font size
+ $color => colore label
+ $fontfamily => font family
+ $transform => Uppercase, Capitalize ecc
+*/
+@mixin sub_menu($fontsize,$color,$fontfamily,$transform){
+
+    //max-height: 0px;
+    //overflow: hidden;
+    position: absolute;
+    top: 16px;
+    li{
+      display: list-item;
+      margin-right: 0px;
+      a{
+        text-decoration: none;
+        font-size: $fontsize;
+        color: $color;
+        font-family: $fontfamily,sans-serif;
+        text-transform: $transform;
+      }
+    }
+
+}
+
+/*
+$fontfamily => font-faly label
+$transform => upper, lower ecc..
+$fontsize => font label
+$color => colore label
+$background => colore background
+$padding => padding bottone
+$width => larghezza btn
+$backhover => background all'hover
+*/
+
+@mixin bottone($fontfamily,$transform,$fontsize,$color,$background,$padding,$width,$backhover){
+  font-size: $fontsize;
+  color: $color;
+  background: $background;
+  padding: $padding;
+  position: relative;
+  width: $width;
+  margin:0 auto;
+  font-family: $fontfamily;
+  text-transform: $transform;
+  cursor: pointer;
+  text-align: center;
+    &:hover{
+      background-color: $backhover;
+    }
+    a{
+      color: $color;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+}
+
+
+/*
+lista categorie gallery generale
+$bordercolor => colore bordo categorie
+$color => colore label categorie
+$bordercoloractive => colore bordi attivi
+$coloractive => colore label attivo
+*/
+
+@mixin lista_cat_gallery($bordercolor, $color, $bordercoloractive, $coloractive){
+  text-align:center;
+  margin-bottom:30px;
+  list-style:none;
+  float: none;
+  width: 100%;
+  -webkit-transition: all 1s ease 0s;
+  -o-transition:all 1s ease 0s;
+  transition:all 1s ease 0s;
+  li{
+    padding:10px 10px;
+    border: 1px solid $bordercolor;
+    color: $color;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    text-transform: uppercase;
+    float: initial;
+    height: auto;
+    margin-right: 5px;
+    position: initial;
+    top: 0;
+    width: auto!important;
+    @media #{$media-mobile}{
+      width: 23%;
+      font-size: 10px;
+      margin-bottom: 9px;
+    }
+
+    &.active{
+      border: 1px solid $bordercoloractive; color: $coloractive; padding: 10px 10px;
+    }
+  }
+
+}
+
+
+/*
+gallery top
+*/
+@mixin gallery_top(){
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+    position: relative;
+
+.swiper-slide{
+      picture {
+        position: relative;
+        height:100%;
+        width: 100%;
+        overflow: hidden;
+        display: inline-block;
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        left: 0;
+        top: 0;
+      }
+}
+      }
+      .fa-angle-right{
+        background-image: none!important;
+        right: 50px;
+        font-size: 70px;
+        color: #ffffff;
+        bottom: 46px;
+        top:initial;
+        @media #{$media-mobile} {
+        display: none;
+        }
+      }
+       .fa-angle-left{
+        @extend .fa-angle-right;
+        left: 50px;
+       }
+     .swiper-pagination{
+          bottom: 10px!important;
+          left: initial!important;
+          width: auto!important;
+          padding: 10px!important;
+          right: 87px!important;
+          .swiper-pagination-bullet{
+            width: 10px;
+            height: 10px;
+          }
+          .swiper-pagination-bullet-active{
+            background: #ffffff!important;
+          }
+          @media #{$media-mobile} {
+            display: none;
+          }
+     }
+
+}
+
+
+/*freccia show*/
+.cont_show{
+   position: absolute;
+   -webkit-transform: translate(-50%);
+   -ms-transform: translate(-50%);
+   transform: translate(-50%);
+   left: 50%;
+   bottom: 30px;
+   z-index: 10;
+   cursor: pointer;
+   @media #{$media-mobile} {
+     display: none;
+   }
+   .show{
+   -webkit-animation-name: bounce;
+   animation-name: bounce;
+   -webkit-animation-fill-mode:both;
+   -moz-animation-fill-mode:both;
+   -ms-animation-fill-mode:both;
+   -o-animation-fill-mode:both;
+   animation-iteration-count: infinite; -moz-animation-iteration-count: infinite; -webkit-animation-iteration-count: infinite;
+   animation-fill-mode:both;
+   -webkit-animation-duration:2.5s;
+   animation-duration:2.5s;
+   }
+
+   @-webkit-keyframes bounce {
+   0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);} 40% {-webkit-transform: translateY(-30px);}
+   60% {-webkit-transform: translateY(-15px);}
+   }
+   @keyframes bounce {
+   0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);transform: translateY(0);}
+   40% {-webkit-transform: translateY(-10px);transform: translateY(-10px);}
+   60% {-webkit-transform: translateY(-10px);transform: translateY(-10px);}
+   }
+.fa{
+  color: #ffffff;
+  font-size: 70px;
+  cursor: pointer;
+}
+}
+
+
+/*
+gallery generale
+*/
+@mixin gallery_gen(){
+  width:100%;
+  max-width: 1450px;
+  margin:0 auto;
+  -webkit-transition: all 1s ease 0s;-o-transition:all 1s ease 0s;transition:all 1s ease 0s;
+  margin-top: 20px;
+
+  li{
+    width:25%;
+    display:inline-block;
+    position:relative;
+    overflow:hidden;
+    height: 292px;
+  @media #{$media-mobile}{
+      width: 50%;
+      height: 200px;
+    }
+
+  }
+}
+
+/*
+$backgruond => background contenitore
+ $coloricon =>colore icona
+ $colorscritta => colore label
+*/
+@mixin btn-mobile($backgruond,$coloricon,$fontsizeicon,$colorscritta,$fontsizescritta){
+  width: 80%;
+  height: 47px;
+  position: fixed;
+  bottom: 0px;
+  display: none;
+  z-index: 10;
+  -webkit-transform: translate(-50%,0px);
+      -ms-transform: translate(-50%,0px);
+          transform: translate(-50%,0px);
+  left: 50%;
+
+    @media #{$media-mobile}{
+      display: block;
+    }
+
+  ul{
+    background-color: $backgruond;
+    height: 100%;
+    li{
+      height: 100%;
+      text-align: center;
+      border-right: 1px solid #ffffff;
+      float: left;
+      width: 33.33%;
+      padding-top: 4px;
+      line-height: 20px;
+      cursor: pointer;
+      &:last-child{
+        border-right: 0px;
+      }
+      a{
+          display: block;
+          text-decoration: none;
+      svg{
+        color: $coloricon;
+        font-size: $fontsizeicon;
+      }
+      div{
+        color: $colorscritta;
+        font-size: $fontsizescritta;
+        text-transform: uppercase;
+      }
+      }
+    }
+  }
+}
+
+
+/*
+$color => colore freccia
+$fontsize => dimensione freccia
+*/
+@mixin newsletter($width,$colorbtn,$widthbtn,$heightbtn,$backgroundbtn,$labelfontsize){
+  text-align: left;
+  width: $width;
+  margin: 0 auto;
+  input{
+    width: 100%;
+    margin-bottom: 10px;
+    &.btn{
+      width: $widthbtn;
+      border: 0;
+      cursor: pointer;
+      color: $colorbtn;
+      text-transform: uppercase;
+      height: $heightbtn;
+      background-color: $backgroundbtn;
+        }
+  }
+  label{
+    font-size: $labelfontsize;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+}
+
+/*
+$color => colore freccia
+$fontsize => dimensione freccia
+*/
+
+@mixin show($color,$fontsize){
+    position: absolute;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+    left: 50%;
+    bottom: 30px;
+    z-index: 10;
+    @media #{$media-mobile}{
+      display: none;
+    }
+    .show{
+    -webkit-animation-name: bounce;
+    animation-name: bounce;
+    -webkit-animation-fill-mode:both;
+    -moz-animation-fill-mode:both;
+    -ms-animation-fill-mode:both;
+    -o-animation-fill-mode:both;
+    animation-iteration-count: infinite; -moz-animation-iteration-count: infinite; -webkit-animation-iteration-count: infinite;
+    animation-fill-mode:both;
+    -webkit-animation-duration:2.5s;
+    animation-duration:2.5s;
+    }
+
+    @-webkit-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);} 40% {-webkit-transform: translateY(-30px);}
+    60% {-webkit-transform: translateY(-15px);}
+    }
+    @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);transform: translateY(0);}
+    40% {-webkit-transform: translateY(-10px);transform: translateY(-10px);}
+    60% {-webkit-transform: translateY(-10px);transform: translateY(-10px);}
+    }
+  .fa-angle-down{
+   color: #ffffff;
+   font-size: 70px;
+   cursor: pointer;
+  }
+}
+
+
+/*
+proprietà css swipebox
+*/
+@mixin swipebox(){
+  #swipebox-overlay{z-index: 100000 !important}
+
+  #swipebox-bottom-bar.visible-bars{
+  -webkit-transform: none!important;
+          -ms-transform: none!important;
+      transform: none!important;
+  }
+  #swipebox-bottom-bar, #swipebox-top-bar{
+  height: 50px;
+  left: 0;
+  position: absolute;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+  width: 100%;
+  z-index: 999;
+  }
+  #swipebox-bottom-bar{
+  height: auto!important;
+  top: 50%!important;
+  bottom: initial!important;
+  }
+
+  #swipebox-arrows{
+  max-width: 0 !important;
+  width: auto !important;
+  }
+  #swipebox-bottom-bar, #swipebox-top-bar{
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0 !important;
+  opacity: 1 !important;
+  }
+
+  #swipebox-arrows{
+  max-width: 0 !important;
+   width: auto !important;
+   display: block !important;
+  height: auto !important;
+  margin: 0 !important;
+  width: auto !important;
+  }
+
+
+  #swipebox-next{
+  background: rgba(0, 0, 0, 0) url("../images/freccia_next.png") no-repeat scroll center center !important;
+   float: none !important;
+   height: 100px !important;
+   position: absolute !important;
+   right: 2% !important;
+   top: 50% !important;
+   -webkit-transform: translate(0px, -50%) !important;
+           -ms-transform: translate(0px, -50%) !important;
+       transform: translate(0px, -50%) !important;
+   width: 100px !important;
+  }
+
+
+  #swipebox-prev{
+  background: rgba(0, 0, 0, 0) url("../images/freccia_prev.png") no-repeat scroll center center !important;
+  float: none !important;
+  height: 100px !important;
+  left: 2% !important;
+  position: absolute !important;
+  top: 50% !important;
+  -webkit-transform: translate(0px, -50%) !important;
+          -ms-transform: translate(0px, -50%) !important;
+      transform: translate(0px, -50%) !important;
+  width: 100px !important;
+  }
+
+}
+
+
+/*
+
+*/
+@mixin cookie($width,$fontsize,$bottom,$background,$color,$colorlink){
+  .divascookies{
+    width: $width !important;
+    font-size: $fontsize !important;
+    bottom: $bottom !important;
+    right: initial!important;
+    background-color: $background !important;
+
+          @media #{$media-mobile}{
+              width: 100% !important;
+            }
+    .divascookies-banner-container {
+     padding: 5px 4px !important;
+     .divascookies-banner-text {
+      padding: 0px !important;
+      color: $color;
+      .divascookies-policy-link a{
+        color: $colorlink !important;
+      }
+    }
+   }
+  }
+}
+
+/*
+$width => larghezza
+$backgruond => background contenitore
+*/
+@mixin hamburger($width,$background){
+    cursor: pointer;
+    width: $width;
+    height: auto;
+    position: fixed;
+    left: 30px;
+    z-index: 20;
+    top: 30px;
+    display: none;
+      @media #{$media-mobile}{
+        display: block;
+      }
+    div{
+      width: 100%;
+      border-radius: 10px;
+      height: 4px;
+      background-color: $background;
+      -o-transition: background-color 1s ease 0s;
+      -webkit-transition: background-color 1s ease 0s;
+      transition: background-color 1s ease 0s;
+      margin-bottom: 6px;
+      &:last-child{
+        margin-bottom: 0px;
+      }
+    }
+    &.active-hamb{
+      div{
+
+        &:nth-child(1){
+          -webkit-transform: rotate(40deg)!important;
+              -ms-transform: rotate(40deg)!important;
+                  transform: rotate(40deg)!important;
+          top: 12px!important;
+          position: relative!important;
+      }
+      &:nth-child(2){
+          opacity: 0!important;
+    }
+    &:nth-child(3){
+      -webkit-transform: rotate(-40deg)!important;
+          -ms-transform: rotate(-40deg)!important;
+              transform: rotate(-40deg)!important;
+      position: relative!important;
+      bottom: 8px!important;
+  }
+      }
+    }
+
+}
+
+/*
+$margin-top => margine da top
+$margin-right => margine destro
+$font-size => dimensione font
+$color => colore link
+*/
+@mixin landing_int($margin-top,$margin-right,$font-size,$color){
+  margin-top: $margin-top;
+  ul{
+    list-style: none;
+    li{
+      float: left;
+      margin-right: $margin-right;
+      a{
+        font-size: $font-size;
+        color: $color;
+      }
+    }
+  }
+}
