@@ -1,12 +1,15 @@
 const path = require('path');
 var wb = require('webpack');
+// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
   entry: ['./node_modules/jquery-ui/ui/widgets/datepicker.js','./node_modules/jquery-ui/themes/base/datepicker.css','./public/assets/css/style.scss','./public/assets/js/index.js'],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public/assets/js')
+    path: path.resolve(__dirname, 'public/assets/js'),
+     publicPath: '/'
   },
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
+  devtool: "eval",
    devServer: {
      contentBase: './public',
      watchContentBase: true
@@ -18,8 +21,18 @@ module.exports = {
             test: [/\.css$/, /\.scss$/],
             use: [
                 "style-loader",
-                "css-loader",
-                "sass-loader",
+                {
+                loader:"css-loader",
+                options: {
+                  sourceMap: true
+                }
+              },
+                  {
+                  loader:"sass-loader",
+                    options: {
+                      sourceMap: true
+                    }
+                  },
                     {
                       loader: 'postcss-loader',
                       options: {
@@ -77,5 +90,6 @@ plugins:[
     "window.jQuery": "jquery'",
     "window.$": "jquery"
   })
+  // new BundleAnalyzerPlugin()
 ]
 };
