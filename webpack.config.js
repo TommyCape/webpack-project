@@ -6,7 +6,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public/assets/js'),
-     publicPath: '/'
+     publicPath: '../'
   },
   // devtool: 'inline-source-map',
   devtool: "eval",
@@ -51,21 +51,18 @@ module.exports = {
           loader: "url-loader?limit=10000&mimetype=application/font-woff"
         },
         {
-           test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: "file-loader"
-        },
-        {
           test: /\.js$/, // Check for all js files
           exclude: /node_modules\/(?!(dom7|ssr-window|swiper)\/).*/,
           loader: 'babel-loader'
         },
         {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot|otf)$/,
         use: [
             {
              loader: 'file-loader',
              options: {
-               name: '[path][name].[ext]'
+               name: '[path][name].[ext]',
+               publicPath: '../'
              }
             }
           ]
