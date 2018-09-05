@@ -1,19 +1,20 @@
 const path = require('path');
 var wb = require('webpack');
+
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
-  entry: ['./node_modules/jquery-ui/ui/widgets/datepicker.js','./node_modules/jquery-ui/themes/base/datepicker.css','./public/assets/css/style.scss','./public/assets/js/index.js'],
+  entry: ['./node_modules/jquery-ui/themes/base/datepicker.css','./node_modules/jquery-ui/ui/widgets/datepicker.js','./public/assets/css/style.scss','./public/assets/js/index.js'],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public/assets/js'),
+    path: path.resolve(__dirname, './'),
      publicPath: '../'
   },
   // devtool: 'inline-source-map',
   devtool: "eval",
-   devServer: {
-     contentBase: './public',
-     watchContentBase: true
-   },
+   // devServer: {
+   //   contentBase: './public',
+   //   watchContentBase: true
+   // },
   watch: true,
   module: {
      rules: [
@@ -51,19 +52,35 @@ module.exports = {
           loader: "url-loader?limit=10000&mimetype=application/font-woff"
         },
         {
+          test: /\.woff?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "url-loader?limit=10000&mimetype=application/font-woff"
+        },
+        {
+          test: /\.ttf?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "url-loader?limit=10000&mimetype=application/font-ttf"
+        },
+        {
+          test: /\.eot?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "url-loader?limit=10000&mimetype=application/font-eot"
+        },
+        {
+          test: /\.otf?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "url-loader?limit=10000&mimetype=application/font-otf"
+        },
+        {
           test: /\.js$/, // Check for all js files
           exclude: /node_modules\/(?!(dom7|ssr-window|swiper)\/).*/,
           loader: 'babel-loader'
         },
         {
-        test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot|otf)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
             {
-             loader: 'file-loader',
-             options: {
-               name: '[path][name].[ext]',
-               publicPath: '../'
-             }
+             loader: 'file-loader'//,
+             // options: {
+             //   name: '[path][name].[ext]',
+             //   publicPath: '../'
+             // }
             }
           ]
         },
@@ -71,10 +88,7 @@ module.exports = {
           test: /\.svg$/,
           use: [
             {
-              loader: 'svg-url-loader',
-              options: {
-              noquotes: true,
-              }
+              loader: 'svg-url-loader'
             }
           ],
         }

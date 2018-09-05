@@ -1,8 +1,28 @@
 import Swiper from 'swiper';
 import swipebox from 'swipebox';
-//import 'swiper/dist/css/swiper.min.css';
+
 jQuery(document).ready(function( $ ) {
-  var mySwiperOfSlide = new Swiper ('.off-slider', {
+
+  var mySwiperTop = new Swiper ('.gallery_top', {
+        direction: 'horizontal',
+        effect: 'fade',
+        autoplay: {
+          delay: 2000,
+        },
+        speed: 1500,
+        pagination: {
+          clickable: true,
+          el: '.gallery_top .swiper-pagination',
+          type: 'bullets',
+        },
+        autoplay: {
+          disableOnInteraction: true
+        },
+        loop: true
+    });
+
+
+  var mySwiperOfSlide = new Swiper ('.off-slide', {
        direction: 'horizontal',
        speed: 1300,
        spaceBetween: 45,
@@ -12,23 +32,126 @@ jQuery(document).ready(function( $ ) {
        effect: 'slide',
        loop: true,
        slidesPerView: 1,
-       breakpoints: {
-          // when window width is <= 1000px
-          1000: {
-            slidesPerView: 2
-          },
-          750: {
-            slidesPerView: 1
-          }
-        },
-        pagination: {
-          clickable: true,
-          el: '.off-slider .swiper-pagination',
-          type: 'bullets',
-        }
         });
 
-        $(".swipebox").swipebox();
+        $("#lang").change(function() {
+        $(".lang").html($("#lang option:selected").text());
+        });
+        $(".lang").html($("#lang option:selected").text());
 
-        $('#datepicker').datepicker();
+        // $(".swipebox").swipebox();
+
+        $( "#datepicker" ).datepicker({
+           dateFormat:"dd/mm/yy",
+           buttonImageOnly: true,
+           altField: "#alternate",
+           altFormat: "dd-mm-yy",
+           minDate: new Date(),
+
+           onSelect: function(dateText){
+
+             var date = $("#datepicker").datepicker("getDate");
+
+             $(".arrivo .gg").html($.datepicker.formatDate("dd", date));
+             $(".arrivo .mm").html($.datepicker.formatDate("M", date));
+             $(".arrivo .aa").html($.datepicker.formatDate("y", date));
+
+
+             if($('#datepicker').datepicker('getDate') >= $('#datepicker_partenza').datepicker('getDate')){
+
+               var nextDayDate = $('#datepicker').datepicker('getDate', '+1d');
+               nextDayDate.setDate(nextDayDate.getDate());
+
+               var nextDayDatep1 = $('#datepicker').datepicker('getDate', '+1d');
+               nextDayDatep1.setDate(nextDayDatep1.getDate() + 1);
+
+               $("#datepicker_partenza").datepicker( "option", "minDate", nextDayDatep1);
+               $('#datepicker_partenza').datepicker('setDate', nextDayDate);
+
+               var date_1 = $("#datepicker_partenza").datepicker("getDate");
+               $(".partenza .gg").html($.datepicker.formatDate("dd", date_1));
+               $(".partenza .mm").html($.datepicker.formatDate("M", date_1));
+               $(".partenza .aa").html($.datepicker.formatDate("y", date_1));
+
+             } else {
+               var nextDayDate = $('#datepicker').datepicker('getDate', '+1d');
+               nextDayDate.setDate(nextDayDate.getDate() + 1);
+               $("#datepicker_partenza").datepicker( "option", "minDate", nextDayDate);
+             }
+
+              prenota();
+           }
+         }).datepicker( "setDate", "d" );
+
+         $("#datepicker_partenza").datepicker({
+           dateFormat:"dd/mm/yy",
+           buttonImageOnly: true,
+           altField: "#alternate_partenza",
+           altFormat: "dd-mm-yy",
+           minDate: new Date(),
+
+           onSelect: function(dateText) {
+             var date = $("#datepicker_partenza").datepicker("getDate");
+             $(".partenza .gg").html($.datepicker.formatDate("dd", date));
+             $(".partenza .mm").html($.datepicker.formatDate("M", date));
+             $(".partenza .aa").html($.datepicker.formatDate("y", date));
+
+                prenota();
+           }
+
+         }).datepicker( "setDate", "+1d" );
+
+         var date = $("#datepicker").datepicker("getDate");
+         var date_1 = $("#datepicker_partenza").datepicker("getDate");
+
+         $(".arrivo .gg").html($.datepicker.formatDate("dd", date));
+         $(".arrivo .mm").html($.datepicker.formatDate("M", date));
+         $(".arrivo .aa").html($.datepicker.formatDate("y", date));
+
+         $(".partenza .gg").html($.datepicker.formatDate("dd", date_1));
+         $(".partenza .mm").html($.datepicker.formatDate("M", date_1));
+         $(".partenza .aa").html($.datepicker.formatDate("y", date_1));
+
+              prenota();
+
 });
+
+
+  function prenota(){
+    var split_arrivo = $("#datepicker").val();
+
+     split_arrivo = split_arrivo.split('/');
+     var aa_arrivo = split_arrivo[2];
+     var mm_arrivo = split_arrivo[1];
+     var gg_arrivo = split_arrivo[0];
+
+     $('[name=aa]').val(aa_arrivo);
+     $('[name=mm]').val(mm_arrivo);
+     $('[name=gg]').val(gg_arrivo);
+
+
+     var split_partenza = $("#datepicker_partenza").val();
+      split_partenza = split_partenza.split('/');
+      var aa_partenza = split_partenza[2];
+      var mm_partenza = split_partenza[1];
+      var gg_partenza = split_partenza[0];
+
+
+    var fromdate = new Date( aa_arrivo, mm_arrivo-1, gg_arrivo);
+
+     var todate = new Date( aa_partenza, mm_partenza-1, gg_partenza);
+     var giorni_differenza = (todate-fromdate)/86400000;
+     giorni_differenza = Math.round(giorni_differenza);
+
+     $('[name=notti_1]').val(giorni_differenza);
+  }
+
+function video(video){
+
+    $( "body" ).append( "<div class=\"cont_video\"><i class=\"fa fa-window-close\" aria-hidden=\"true\"></i><video controls=\"controls\" width=\"auto\" height=\"50%\" autoplay><source src=\""+video+"\" type=\"video/mp4\" />Your browser does not support the video tag.</video></div>" );
+
+    $(".fa-window-close").click(function(){
+      $(".cont_video").remove();
+    });
+
+}
