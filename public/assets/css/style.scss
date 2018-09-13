@@ -3,11 +3,12 @@
 @import 'future/stylesheet.css';
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 @import '~swiper/dist/css/swiper.min.css';
-@import '~swipebox/src/css/swipebox.min.css';
-@import '~jquery-ui/themes/base/theme.css';
+@import '../js/jquery-ui/jquery-ui.min.css';
+@import '../js/photobox/photobox/photobox.css';
 
 
-$font: 'Futura (Light)';
+
+$font: 'Times new roman';
 $color: #64513d;
 html{
       height: 100%;
@@ -37,6 +38,10 @@ body{
         font-family: 'Byom Icons'!important;
         font-size: 15px;
       }
+
+      a{
+        text-decoration: none;
+      }
     }
 
     h1{
@@ -56,430 +61,61 @@ body{
 
 @include picture();
 
-.scopri{
-  color: #fff;
-  border-radius: 3px;
-  padding: 16px;
-  background-color: #786d65;
-  position: relative;
-  display: block;
-  width: 240px;
-  margin-top: 30px;
-  font-size: 1.8rem;
-  text-decoration: none;
-  @include trans(background-color,0.5s,0s);
-  &:hover{
-    background-color: #64513d;
-  }
-}
 
-.container{
-  width: calc(100% - 80px);
-  height: 100%;
-  margin: 0 auto;
-  margin-top: 35px;
-  .withe{
-    position: fixed;
-    top: 0;
-    width: calc(100% - 80px);
-    height: 35px;
-    background-color: #fff;
-    z-index: 10;
-  }
-}
+
 
 .menu-top{
-  position: fixed;
-  right: 82px;
-  z-index: 11;
-  top: 162px;
+
   @include menu(8px,1.7rem,$color,$font,uppercase);
-  li{
-    padding: 8px;
-    border-radius: 3px;
-    position: relative;
-    &:before{
-      content:'';
-      position: absolute;
-      height: 100%;
-      width: 0px;
-      top:0;
-      left: 0;
-      background-color: $color;
-      border-radius: 3px;
-      z-index: -1;
-      @include trans(width,0.3s,0s);
-    }
-     a{
-         @include trans(color,0.6s,0s);
-    }
-    &:hover{
-      &:before{
-        width: 100%;
-      }
-      a{
-        color:#fff;
-      }
-    }
-  }
-}
-
-
-.header{
-  height: calc(100% - 35px);
-position: relative;
-  &__top{
-    width: calc(100% - 80px);
-    background: rgba(255,255,255,0.8);
-    height: 172px;
-    position: fixed;
-    top: 35px;
-    z-index: 10;
-
-    .logo{
-      position: absolute;
-      top: 20px;
-      left: 56px;
-    }
-
-    .lang-qr{
-      position: absolute;
-      right: 43px;
-      display: flex;
-      margin-top: 34px;
-      > li{
-        display: flex;
-        &:first-child{
-          border-right: 1px solid $color;
-          padding-right: 20px;
-        }
-        &:nth-child(2){
-          padding-right: 12px;
-          padding-left: 25px;
-        }
-        .language{
-          position: relative;
-          padding-top: 16px;
-          img{
-            margin-left: 5px;
-          }
-          .lang{
-            font-size: 1.7rem;
-            color: $color;
-            text-transform: uppercase;
-          }
-          select{
-            position: absolute;
-            opacity: 0;
-            left: 0;
-            text-transform: uppercase;
-            top: 0;
-            cursor: pointer;
-            width: 100%;
-            height: 60%;
-          }
-        }
-        .now{
-          font-size: 1.6rem;
-          color: $color;
-          text-align: right;
-          padding-top: 12px;
-        }
-        form{
-          .qr{
-            display: flex;
-            li{
-              position: relative;
-            &.arrivo{
-              height: 55px;
-              width: 123px;
-              background-color: $color;
-              border-radius: 3px;
-              margin-right: 11px;
-              text-align: center;
-              padding-top: 16px;
-               .fqr{
-                position: absolute;
-                right: -5px;
-                transform: translate(0,-50%);
-                top: 50%;
-              }
-              .gg{
-                color:#fff;
-                font-size: 2rem;
-                margin-right: 3px;
-              }
-              .mm{
-                @extend .gg;
-                font-size: 1.5rem;
-              }
-              .aa{
-                @extend .gg;
-                margin-right: 0px;
-              }
-              input{
-                position: absolute;
-                opacity: 0;
-                left: 0;
-                top: 0;
-                height: 100%;
-                width: 100%;
-                cursor: pointer;
-                border:0px;
-              }
-            }
-            &.partenza{
-              @extend .arrivo;
-              margin-right: 8px;
-            }
-            &:last-child{
-              background-color: #fff;
-              width: 176px;
-              border-radius: 3px;
-              padding-top: 12px;
-              padding-left: 20px;
-              input{
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                opacity: 0;
-                cursor: pointer;
-              }
-              .preno{
-                text-align: left;
-                font-size: 1.2rem;
-                color: #240a00;
-              }
-            }
-          }
-        }
-        }
-      }
-    }
-
-  }
-
-  .off-slide{
-    position: absolute;
-    overflow: hidden;
-    left: 44px;
-    bottom: 30px;
-    width: 403px;
-    height: 128px;
-    .swiper-wrapper{
-      .swiper-slide{
-        width: 100%;
-        display: flex;
-        picture{
-          width: 30%;
-        }
-        .cont{
-          width: 70%;
-          background-color: $color;
-          padding: 20px;
-          .title{
-            color: #fff;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-          }
-          .txt{
-            color:#fcc557;
-            font-size: 1.2rem;
-          }
-        }
-      }
-    }
-  }
-
-  .box-header{
-    position: absolute;
-    overflow: hidden;
-    right: 44px;
-    bottom: 30px;
-    min-width: 403px;
-    height: 128px;
-    background-color: #fcc557;
-    text-align:center;
-    z-index: 9;
-    padding-top: 30px;
-  }
 
 }
+
+
+
 
 .gallery_top{
   @include gallery_top();
-  height: 100%;
-   @media screen and (max-width:1024px){
-     height: 50%;
-   }
-   @media screen and (max-width:750px){
-     height: 350px;
-     margin-bottom: 40px;
-     margin-top: 0px;
-    }
-.cont_show{
-  text-align: center;
-  cursor: pointer;
-  bottom: 20px;
-  z-index:1;
-  .icon{
-    font-size: 40px;
-    color: #ffffff;
-    }
-    .more{
-      color: #ffffff;
-      font-size: 1.4rem;
-      text-transform: uppercase;
-    }
-  }
-  .swiper-pagination{
-    right: initial!important;
-    left: 46px!important;
-        width: 10px!important;
-        z-index: 1;
-        .swiper-pagination-bullet{
-          margin-bottom: 3px!important;
-        }
-  }
+
 }
 
-.horiz-box{
+
+
+footer{}
+
+.listaCatGallery{
+@include lista_cat_gallery(#000, #000, $color, $color);
+margin-top: 45px;
   li{
-    height: 500px;
-    display: flex;
-    .cont{
-      width: 60%;
-      background-color: $color;
-      position: relative;
-      .text{
-        width: 80%;
-        position: absolute;
-        transform: translate(0,-50%);
-        top:50%;
-            padding: 0 115px 0 45px;
-        .title{
-          color:#fff;
-          font-size: 4.7rem;
-          text-transform: uppercase;
-          margin-bottom: 20px;
-          }
-        .txt{
-          color:#fff;
-          font-size: 1.4rem;
-          }
-      }
-    }
-    picture{
-      width:40%;
-    }
-    &:nth-child(2n){
-      .cont{
-        width: 20%;
-        background-color: #fff;
-        .text{
-          width: 70%;
-          transform: translate(-50%,-50%);
-          left:50%;
-          padding: initial;
-          .title{
-            color:$color;
-          }
-          .txt{
-            color:$color;
-          }
-      }
-      }
-    }
-    &:nth-child(3){
-      .cont{
-        order: 1;
-        background-color: #fcc557;
-        .text{
-          padding: 0 115px 0 115px;
-          .title{
-            color:$color;
-          }
-          .txt{
-            color:$color;
-          }
-      }
-      .scopri{
-        right: 0;
-          position: absolute;
-      }
-      }
-    }
+    float: initial!important;
+    height: auto!important;
+    margin-bottom: 0px!important;
+    border: 1px solid #000;
   }
 }
 
-.vert-box{
+
+.gallery_minigallery{
+@include gallery_gen();
+    max-width: initial;
+margin-bottom: 107px;
   li{
-    height: 550px;
-    position: relative;
-    @include parallax();
-    .cont{
-      width: 410px;
-      transform: initial;
-      top: initial;
-      background-color: #ffffff;
-      position: relative;
-      height: calc(100% - 64px);
-      left: 45px;
-      top: 64px;
-      .text{
-        width: 80%;
-        position: absolute;
-        transform: translate(0,-50%);
-        top:50%;
-        padding: 60px 0px 0 80px;
-        .title{
-          color:$color;
-          font-size: 4.7rem;
-          text-transform: uppercase;
-          margin-bottom: 20px;
-          }
-        .txt{
-          color:$color;
-          font-size: 1.4rem;
-          }
+    float: left;
+    height: auto;
+    margin-bottom: 0px;
+    a{
+      picture{
+        padding-bottom: 100%;
+        height: auto;
+        display: block;
       }
     }
-    &:nth-child(2n){
-      .cont{
-        display: flex;
-        width: calc(100% - 45px);
-        height: 100%;
-        top: 0;
-        max-width: initial;
-        picture{
-          width: 30%;
-          max-width: 410px;
-
-        }
-        .text{
-          position: absolute;
-          transform: translate(-50%, -50%);
-          padding: 0px;
-          width: 38%;
-          left: 64%;
-        }
-      }
+    @media screen and (max-width : 750px){
+      width: 49.5%;
+      height: auto;
     }
-    &:nth-child(3){
-    .cont{
-        top:0;
-      }
+    &.hide{
+      display: none;
+    }
   }
-}
-}
 
-footer{
-  background-color: $color;
-  margin-top: 18px;
-  height: 213px;
-  width: 100%;
-  border-radius: 0 0 10px 10px;
-  margin-bottom: 35px;
 }

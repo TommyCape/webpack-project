@@ -1,5 +1,4 @@
 import Swiper from 'swiper';
-import swipebox from 'swipebox';
 
 jQuery(document).ready(function( $ ) {
 
@@ -39,7 +38,22 @@ jQuery(document).ready(function( $ ) {
         });
         $(".lang").html($("#lang option:selected").text());
 
-        // $(".swipebox").swipebox();
+
+         $('body').photobox('.photobox');
+
+
+        $('.filter').on( "click", function() {
+        var filterValue = $(this).attr('data-filter');
+        $(".filter").removeClass('active');
+        $(this).addClass('active');
+        $( ".gallery_isotope li" ).removeClass('hide');
+
+        $( ".gallery_isotope li" ).each(function() {
+              var filterClass =  $(this).attr('class');
+                if(filterClass != filterValue) $(this).addClass('hide');
+                if(filterValue == '*') $( ".gallery_isotope li" ).removeClass('hide');
+            });
+        });
 
         $( "#datepicker" ).datepicker({
            dateFormat:"dd/mm/yy",

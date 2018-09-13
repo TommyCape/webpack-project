@@ -5,7 +5,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <!-- <link rel="stylesheet" href="../node_modules/swiper/dist/css/swiper.css"> -->
+    <!--   <link rel="stylesheet" href="../public/assets/css/style.min.css">-->
     <script src="../bundle.js"></script>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.js"></script> -->
@@ -165,7 +165,28 @@
       <h2>esperienza per il tuo business e per le tue vacanze</h2>
     </div>
     </header>
-    <ul class="horiz-box">
+    <?php if($_GET['modello'] != 'home'){ ?>
+    <nav class="menu-sec">
+      <ul>
+        <li>
+          <a href="">suite</a>
+        </li>
+        <li>
+          <a href="">junior suite</a>
+        </li>
+        <li>
+          <a href="">deluxe</a>
+        </li>
+        <li>
+          <a href="">superior</a>
+        </li>
+        <li>
+          <a href="">classic</a>
+        </li>
+      </ul>
+    </nav>
+  <?php } if($_GET['modello'] == "home" || $_GET['modello'] == "camere" || $_GET['modello'] == "interna"){?>
+    <ul class="horiz-box <?=($_GET['modello'] == "camere")? "horiz-box--camere" : (($_GET['modello'] == "interna")? "horiz-box--interna" : "")?>">
     <li>
       <div class="cont">
         <div class="text">
@@ -177,18 +198,24 @@
           </div>
         </div>
       </div>
+    <div class="image">
       <picture>
         <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
         <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
         <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
       </picture>
+      <?php if($_GET['modello'] == "camere") echo "<a class=\"scopri scopri--camere\" href=\"\">Scopri</a>"; ?>
+    </div>
     </li>
-    <li>
+  <li>
+  <div class="image">
       <picture>
         <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
         <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
         <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
       </picture>
+      <?php if($_GET['modello'] == "camere" || $_GET['modello'] == "interna") echo "<a class=\"scopri scopri--camere\" href=\"\">Scopri</a>"; ?>
+    </div>
       <div class="cont">
         <div class="text">
           <div class="title">ambiente e spazi</div>
@@ -197,15 +224,19 @@
 
             Questo è il viaggio che ci ha condotti al Warmthotel, se sei qui il tuo deve ancora cominciare nel posto perfetto per vivere la Roma contemporanea degli affari e dei grandi eventi e raggiungere facilmente quella del passato per scoprirla e innamorarsene.
           </div>
-          <a class="scopri" href="">Scopri</a>
+          <?php if($_GET['modello'] != "camere"){?><a class="scopri" href="">Scopri</a><?php }?>
         </div>
       </div>
+    <div class="image">
       <picture>
         <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
         <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
         <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
       </picture>
+      <?php if($_GET['modello'] == "camere" || $_GET['modello'] == "interna") echo "<a class=\"scopri scopri--camere\" href=\"\">Scopri</a>"; ?>
+    </div>
     </li>
+    <?php if($_GET['modello'] == "home" || $_GET['modello'] == "camere"){?>
     <li>
       <div class="cont">
         <div class="text">
@@ -215,16 +246,51 @@
               <br /><br />
             Questo è il viaggio che ci ha condotti al Warmthotel, se sei qui il tuo deve ancora cominciare nel posto perfetto per vivere la
           </div>
-          <a class="scopri" href="">Scopri</a>
+          <?php if($_GET['modello'] != "camere"){?><a class="scopri" href="">Scopri</a><?php }?>
         </div>
       </div>
+    <div class="image">
       <picture>
         <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
         <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
         <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
       </picture>
+      <?php if($_GET['modello'] == "camere") echo "<a class=\"scopri scopri--camere\" href=\"\">Scopri</a>"; ?>
+    </div>
     </li>
+    <?php if($_GET['modello'] == "camere"){ ?>
+    <li>
+  <div class="image">
+      <picture>
+        <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+        <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+        <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+      </picture>
+      <?php if($_GET['modello'] == "camere") echo "<a class=\"scopri scopri--camere\" href=\"\">Scopri</a>"; ?>
+    </div>
+      <div class="cont">
+        <div class="text">
+          <div class="title">ambiente e spazi</div>
+          <div class="txt">
+            Siamo partiti alla volta di un nuovo concetto di accoglienza che dedicasse la stessa attenzione al nostro ospite e al nostro team, per poter offrire un’ospitalità etica e vera. I nostri colori sono quelli della terra e della natura, ma il nostro spirito è quello metropolitano della città, perchè in fondo qui siamo vicino a tutto ma lontano dal caos.<br /><br />
+
+            Questo è il viaggio che ci ha condotti al Warmthotel, se sei qui il tuo deve ancora cominciare nel posto perfetto per vivere la Roma contemporanea degli affari e dei grandi eventi e raggiungere facilmente quella del passato per scoprirla e innamorarsene.
+          </div>
+          <?php if($_GET['modello'] != "camere"){?><a class="scopri" href="">Scopri</a><?php }?>
+        </div>
+      </div>
+    <div class="image">
+      <picture>
+        <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+        <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+        <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+      </picture>
+    </div>
+    </li>
+  <?php } }?>
   </ul>
+
+<?php if($_GET['modello'] == 'home'){?>
     <ul class="vert-box">
       <li style="background-image:url(<?=$percorso?>public/images/box.jpg)">
         <div class="cont">
@@ -241,11 +307,13 @@
       </li>
       <li>
         <div class="cont">
-          <picture>
-            <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
-            <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
-            <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
-          </picture>
+          <div class="image">
+            <picture>
+              <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+              <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+              <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+            </picture>
+          </div>
           <div class="text">
             <div class="title">fuori dal caos</div>
             <div class="txt">
@@ -271,6 +339,127 @@
         </div>
       </li>
     </ul>
+    <?php   } } elseif($_GET['modello'] == 'offerte'){?>
+      <ul class="list-offers">
+      <li>
+        <div class="cont">
+          <div class="text">
+            <div class="title">fuori dal caos</div>
+            <div class="txt">
+              Siamo partiti alla volta di un nuovo concetto di accoglienza che dedicasse la stessa attenzione al nostro ospite e al nostro team, per poter offrire un’ospitalità etica e vera. I nostri colori sono quelli della terra e della natura, ma il nostro spirito è quello metropolitano della città, perchè in fondo qui siamo vicino a tutto ma lontano dal caos.
+                <br /><br />
+              Questo è il viaggio che ci ha condotti al Warmthotel, se sei qui il tuo deve ancora cominciare nel posto perfetto per vivere la
+            </div>
+          </div>
+        </div>
+      </li>
+    <li>
+    <div class="image">
+        <picture>
+          <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+          <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+          <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+        </picture>
+        <div class="text">
+          <div class="title">Speciale gourmet</div>
+          <div class="txt">Siamo partiti alla volta di un nuovo concetto di accoglienza che dedicasse la stessa attenzione al nostro ospite e al nostro team, per poter offrire un’ospitalità etica e vera. I nostri colori sono quelli della terra e della natura, ma il nostro spirito è quello </div>
+          <a class="scopri scopri--camere" href="">Scopri</a>
+        </div>
+      </div>
+      <div class="image">
+        <picture>
+          <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+          <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+          <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+        </picture>
+        <div class="text">
+          <div class="title">Speciale gourmet</div>
+          <div class="txt">Siamo partiti alla volta di un nuovo concetto di accoglienza che dedicasse la stessa attenzione al nostro ospite e al nostro team, per poter offrire un’ospitalità etica e vera. I nostri colori sono quelli della terra e della natura, ma il nostro spirito è quello </div>
+          <a class="scopri scopri--camere" href="">Scopri</a>
+        </div>
+      </div>
+      </li>
+      <li>
+      <div class="image">
+          <picture>
+            <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+            <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+            <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+          </picture>
+          <div class="text">
+            <div class="title">Speciale gourmet</div>
+            <div class="txt">Siamo partiti alla volta di un nuovo concetto di accoglienza che dedicasse la stessa attenzione al nostro ospite e al nostro team, per poter offrire un’ospitalità etica e vera. I nostri colori sono quelli della terra e della natura, ma il nostro spirito è quello </div>
+            <a class="scopri scopri--camere" href="">Scopri</a>
+          </div>
+        </div>
+        <div class="image">
+          <picture>
+            <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+            <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+            <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+          </picture>
+          <div class="text">
+            <div class="title">Speciale gourmet</div>
+            <div class="txt">Siamo partiti alla volta di un nuovo concetto di accoglienza che dedicasse la stessa attenzione al nostro ospite e al nostro team, per poter offrire un’ospitalità etica e vera. I nostri colori sono quelli della terra e della natura, ma il nostro spirito è quello </div>
+            <a class="scopri scopri--camere" href="">Scopri</a>
+          </div>
+        </div>
+        </li>
+        <li>
+        <div class="image">
+            <picture>
+              <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+              <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+              <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+            </picture>
+            <div class="text">
+              <div class="title">Speciale gourmet</div>
+              <div class="txt">Siamo partiti alla volta di un nuovo concetto di accoglienza che dedicasse la stessa attenzione al nostro ospite e al nostro team, per poter offrire un’ospitalità etica e vera. I nostri colori sono quelli della terra e della natura, ma il nostro spirito è quello </div>
+              <a class="scopri scopri--camere" href="">Scopri</a>
+            </div>
+        </div>
+          <div class="image">
+            <picture>
+              <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+              <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+              <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+            </picture>
+            <div class="text">
+              <div class="title">Speciale gourmet</div>
+              <div class="txt">Siamo partiti alla volta di un nuovo concetto di accoglienza che dedicasse la stessa attenzione al nostro ospite e al nostro team, per poter offrire un’ospitalità etica e vera. I nostri colori sono quelli della terra e della natura, ma il nostro spirito è quello </div>
+              <a class="scopri scopri--camere" href="">Scopri</a>
+            </div>
+          </div>
+          </li>
+          <li>
+          <div class="image">
+              <picture>
+                <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+                <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+                <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+              </picture>
+              <div class="text">
+                <div class="title">Speciale gourmet</div>
+                <div class="txt">Siamo partiti alla volta di un nuovo concetto di accoglienza che dedicasse la stessa attenzione al nostro ospite e al nostro team, per poter offrire un’ospitalità etica e vera. I nostri colori sono quelli della terra e della natura, ma il nostro spirito è quello </div>
+                <a class="scopri scopri--camere" href="">Scopri</a>
+              </div>
+            </div>
+            <div class="image">
+              <picture>
+                <source media="(max-width: 750px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+                <source media="(max-width: 1024px)" srcset="<?=$percorso?>public/images/colosseo.jpg">
+                <img class="img" src="<?=$percorso?>public/images/colosseo.jpg" alt="">
+              </picture>
+              <div class="text">
+                <div class="title">Speciale gourmet</div>
+                <div class="txt">Siamo partiti alla volta di un nuovo concetto di accoglienza che dedicasse la stessa attenzione al nostro ospite e al nostro team, per poter offrire un’ospitalità etica e vera. I nostri colori sono quelli della terra e della natura, ma il nostro spirito è quello </div>
+                <a class="scopri scopri--camere" href="">Scopri</a>
+              </div>
+            </div>
+            </li>
+    </ul>
+
+    <?php }?>
     <footer class="footer">
       <ul class="info">
         <li>
@@ -294,6 +483,21 @@
               <a href=""><i class="fab fa-linkedin-in"></i></a>
             </li>
           </ul>
+        </li>
+        <li>
+          <a href=""><img src="<?=$percorso?>public/images/logo-footer.png" /></a>
+        </li>
+        <li>
+          <nav class="menu-bottom">
+            <ul>
+              <li>
+                <a href="">privacy</a>
+              </li>
+              <li>
+                <a href="">dati societari</a>
+              </li>
+            </ul>
+          </nav>
         </li>
       </ul>
     </footer>

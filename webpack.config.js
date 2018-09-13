@@ -1,27 +1,22 @@
 const path = require('path');
 var wb = require('webpack');
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 module.exports = {
-  entry: ['./node_modules/jquery-ui/themes/base/datepicker.css','./node_modules/jquery-ui/ui/widgets/datepicker.js','./public/assets/css/style.scss','./public/assets/js/index.js'],
+  entry: ['./public/assets/js/jquery-ui/jquery-ui.min.js','./public/assets/js/photobox/photobox/jquery.photobox.js','./public/assets/js/index.js','./public/assets/css/style.scss'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './'),
-     publicPath: '../'
+     publicPath: '/templates/warmthotel'
   },
-  // devtool: 'inline-source-map',
-  devtool: "eval",
-   // devServer: {
-   //   contentBase: './public',
-   //   watchContentBase: true
-   // },
-  watch: true,
+   devtool: "source-map",
+  // watch: true,
   module: {
      rules: [
         {
             test: [/\.css$/, /\.scss$/],
             use: [
-                "style-loader",
+                MiniCssExtractPlugin.loader,
                 {
                 loader:"css-loader",
                 options: {
@@ -29,9 +24,9 @@ module.exports = {
                 }
               },
                   {
-                  loader:"sass-loader",
+                    loader:"sass-loader",
                     options: {
-                      sourceMap: true
+                    sourceMap: true
                     }
                   },
                     {
@@ -48,39 +43,28 @@ module.exports = {
             ]
         },
         {
-          test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: "url-loader?limit=10000&mimetype=application/font-woff"
-        },
-        {
-          test: /\.woff?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: "url-loader?limit=10000&mimetype=application/font-woff"
-        },
-        {
-          test: /\.ttf?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: "url-loader?limit=10000&mimetype=application/font-ttf"
-        },
-        {
-          test: /\.eot?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: "url-loader?limit=10000&mimetype=application/font-eot"
-        },
-        {
-          test: /\.otf?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: "url-loader?limit=10000&mimetype=application/font-otf"
+        test: /\.(eot|otf|ttf|woff|woff2)$/,
+        loader: 'url-loader',
+          options: {
+            limit: 10000,
+            outputPath:'/public/images/'
+          }
         },
         {
           test: /\.js$/, // Check for all js files
-          exclude: /node_modules\/(?!(dom7|ssr-window|swiper)\/).*/,
+          exclude:  /(node_modules|bower_components)/,
           loader: 'babel-loader'
         },
         {
         test: /\.(png|jpg|gif|svg)$/,
         use: [
             {
-             loader: 'file-loader'//,
-             // options: {
+             loader: 'file-loader',
+             options: {
+               outputPath:'/public/images/'
              //   name: '[path][name].[ext]',
              //   publicPath: '../'
-             // }
+             }
             }
           ]
         },
@@ -98,9 +82,9 @@ plugins:[
   new wb.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
-    "window.jQuery": "jquery'",
-    "window.$": "jquery"
+  }),
+  new MiniCssExtractPlugin({
+    filename: "public/assets/css/style.min.css"
   })
-  // new BundleAnalyzerPlugin()
 ]
 };
