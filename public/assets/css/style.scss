@@ -1,120 +1,37 @@
-@import "blast_utility/core.scss";
-@import 'byomicons/stylesheet.css';
-@import '~@fortawesome/fontawesome-free/css/all.min.css';
-@import '~swiper/dist/css/swiper.min.css';
 @import '../js/jquery-ui/jquery-ui.min.css';
 @import '../js/photobox/photobox/photobox.css';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import '~swiper/dist/css/swiper.min.css';
+@import '../js/cookie/jquery.cookiebar.css';
+@import "blast_utility/core.scss";
 
-
-
-$font: 'Times new roman';
-$color: #64513d;
-html{
-      height: 100%;
-      font-size: 10px;
-        @media screen and (max-width : 750px){
-          font-size: 9px;
-        }
-        @media screen and (max-width:338px){
-          font-size: 8.5px;
-        }
-   }
-body{
-      height: 100%;
-      background-color: #ffffff;
-      font-family: $font;
-      [data-aos="flip-up"]{
-        -webkit-transform: perspective(2500px) rotateX(-90deg);
-                transform: perspective(2500px) rotateX(-90deg);
-      }
-
-      [data-aos="flip-down"]{
-          -webkit-transform: perspective(2500px) rotateX(-90deg);
-                  transform: perspective(2500px) rotateX(-90deg);
-      }
-
-      .icon{
-        font-family: 'Byom Icons'!important;
-        font-size: 15px;
-      }
-
-      a{
-        text-decoration: none;
-      }
-    }
-
-    h1{
-      color: #fff;
-      font-size: 4.5rem;
-      text-transform: uppercase;
-    }
-    h2{
-      color:$color;
-      font-size: 1.2rem;
-        text-transform: uppercase;
-    }
-
-  .row [class^="col"]{
-      margin: 0;
-    }
+.ciao{
+  color:#f00;
+}
+.pippo{
+  height: 100px;
+  .pluto{
+    width: 100%;
+  }
+}
 
 @include picture();
 
-
-
-
-.menu-top{
-
-  @include menu(8px,1.7rem,$color,$font,uppercase);
-
-}
-
-
-
-
-.gallery_top{
-  @include gallery_top();
-
-}
-
-
-
-footer{}
-
-.listaCatGallery{
-@include lista_cat_gallery(#000, #000, $color, $color);
-margin-top: 45px;
+.gallery{
+  display: flex;
+  height: 200px;
+  width: 100%;
   li{
-    float: initial!important;
-    height: auto!important;
-    margin-bottom: 0px!important;
-    border: 1px solid #000;
+    width: 20%;
   }
 }
 
-
-.gallery_minigallery{
-@include gallery_gen();
-    max-width: initial;
-margin-bottom: 107px;
-  li{
-    float: left;
-    height: auto;
-    margin-bottom: 0px;
-    a{
-      picture{
-        padding-bottom: 100%;
-        height: auto;
-        display: block;
-      }
-    }
-    @media screen and (max-width : 750px){
-      width: 49.5%;
-      height: auto;
-    }
-    &.hide{
-      display: none;
-    }
+.swiper-container{
+  width: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-top: 30px;
+  .swiper-slide{
+    height: 200px;
   }
-
 }

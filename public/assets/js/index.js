@@ -2,36 +2,38 @@ import Swiper from 'swiper';
 
 jQuery(document).ready(function( $ ) {
 
-  var mySwiperTop = new Swiper ('.gallery_top', {
+  var mySwiperTop = new Swiper ('.swiper-container', {
         direction: 'horizontal',
         effect: 'fade',
         autoplay: {
-          delay: 2000,
+          delay: 1000,
+          disableOnInteraction: true
         },
         speed: 1500,
         pagination: {
           clickable: true,
-          el: '.gallery_top .swiper-pagination',
+          el: '.swiper-pagination',
           type: 'bullets',
         },
-        autoplay: {
-          disableOnInteraction: true
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         },
         loop: true
     });
 
 
-  var mySwiperOfSlide = new Swiper ('.off-slide', {
-       direction: 'horizontal',
-       speed: 1300,
-       spaceBetween: 45,
-       autoplay: {
-         delay: 800,
-       },
-       effect: 'slide',
-       loop: true,
-       slidesPerView: 1,
-        });
+  // var mySwiperOfSlide = new Swiper ('.off-slide', {
+  //      direction: 'horizontal',
+  //      speed: 1300,
+  //      spaceBetween: 45,
+  //      autoplay: {
+  //        delay: 800,
+  //      },
+  //      effect: 'slide',
+  //      loop: true,
+  //      slidesPerView: 1,
+  //       });
 
         $("#lang").change(function() {
         $(".lang").html($("#lang option:selected").text());
@@ -41,6 +43,7 @@ jQuery(document).ready(function( $ ) {
 
          $('body').photobox('.photobox');
 
+        cookie();
 
         $('.filter').on( "click", function() {
         var filterValue = $(this).attr('data-filter');
@@ -167,5 +170,28 @@ function video(video){
     $(".fa-window-close").click(function(){
       $(".cont_video").remove();
     });
+}
 
+function cookie(){
+
+switch($('#lingua').val()){
+  case 'ita':
+    var testo = 'Questo sito utilizza cookie tecnici e di profilazione di terze parti. Per ulteriori informazioni o per negare il consenso, leggi la informativa estesa. Proseguendo con la navigazione acconsenti a usare i cookie.';
+      var label = 'Accetta e chiudi';
+  break;
+
+  default:
+    var testo = 'This site uses technical cookies and third party profiling. To learn more or opt out, read the complete cookie policy statement. By continuing to use this site, we assume you are happy with it';
+
+    var label = 'Accetta e chiudi';
+  break;
+}
+  $.cookieBar({
+    message: testo,
+    acceptText: label,
+    policyButton: true,
+    policyText: 'Privacy Policy',
+    policyURL: $('#linkcookie').val(),
+    expireDays: 30
+  });
 }
