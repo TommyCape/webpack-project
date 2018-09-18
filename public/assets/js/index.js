@@ -45,6 +45,18 @@ jQuery(document).ready(function( $ ) {
 
          cookie();
 
+        var offset = 150;
+        var $back_to_top = $('.cd-top');
+       $(window).scroll(function(){
+           if( $(this).scrollTop() > offset ){
+             $back_to_top.addClass('cd-is-visible');
+             $('body').addClass('scroll');
+           } else {
+             $back_to_top.removeClass('cd-is-visible cd-fade-out');
+             $('body').removeClass('scroll');
+           }
+       });
+
         $('.filter').on( "click", function() {
         var filterValue = $(this).attr('data-filter');
         $(".filter").removeClass('active');
