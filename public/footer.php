@@ -40,6 +40,7 @@
   </ul>
 </footer>
 </div>
+<input id="lang" type="hidden" value="<?=$this->sigla_lingua?>"/>
     <script src="<?=$this->getPath()?>/bundle.js"></script>
 </body>
 </html>
