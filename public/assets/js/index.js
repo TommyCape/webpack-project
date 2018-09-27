@@ -70,6 +70,9 @@ jQuery(document).ready(function( $ ) {
             });
         });
 
+        var lang =  $('#lang').val();
+        $.datepicker.setDefaults($.datepicker.regional[lang]);
+
         $( "#datepicker" ).datepicker({
            dateFormat:"dd/mm/yy",
            buttonImageOnly: true,
