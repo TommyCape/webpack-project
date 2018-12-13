@@ -50,6 +50,87 @@ tag picture per img
   }
 }
 
+@mixin photobox(){
+  .pbWrapper > *, .pbHide .pbWrapper > .prepare{
+    border-radius: 0px;
+  }
+  #pbAutoplayBtn{
+    display: none!important;
+  }
+
+  #pbCloseBtn:before, #pbAutoplayBtn:before{
+    background: rgba(255,255,255,0);
+    font-size: 5em;
+    opacity: 1;
+  }
+
+  #pbCloseBtn:hover:before{
+    padding: 8px 8px 12px 12px;
+    background: rgba(255,255,255,.0);
+  }
+
+
+  .pbHide .pbWrapper > *,
+  .pbHide .pbWrapper > .prepare{ opacity:0; transition:.2s ease-in; }
+
+  .pbWrapper > div,
+  .pbWrapper > img{ transition:.2s ease-out; opacity: 1;}
+
+  /*** when going to the next slide ***/
+  /* prepare next slide which will be shown */
+  .pbWrapper > *,
+  .pbHide.next .pbWrapper > .prepare{ transform:translatex(40%); }
+  /* prepare current slide which will "go away" */
+  .pbHide.next .pbWrapper > *{ transform:translatex(-40%);  }
+
+  /* when going to the previous slide */
+  .pbWrapper > *,
+  .pbHide.prev .pbWrapper > .prepare{ transform:translatex(-40%); }
+  .pbHide.prev .pbWrapper > *{ transform:translatex(40%); }
+
+  .on #pbNextBtn:hover b{
+     transform: scale(.4) translateX(-350px);
+   -webkit-transform: scale(.4) translateX(-350px);
+   @media screen and (max-width:1380px){
+     transform: scale(.4) translateX(-0px);
+   -webkit-transform: scale(.4) translateX(-0px);
+   }
+  }
+
+  #pbOverlay .prevNext{
+      opacity: 1;
+  }
+
+  .on #pbPrevBtn:hover b{
+    transform: scale(.4) translateX(350px);
+      -webkit-transform: scale(.4) translateX(350px);
+
+      @media screen and (max-width:1380px){
+        transform: scale(.4) translateX(0px);
+      -webkit-transform: scale(.4) translateX(0px);
+      }
+  }
+
+  #pbPrevBtn b{
+    @media screen and (max-width:1380px){
+      transform: scale(.4) translateX(0px);
+    -webkit-transform: scale(.4) translateX(0px);
+    }
+  }
+
+  #pbNextBtn b{
+    @media screen and (max-width:1380px){
+      transform: scale(.4) translateX(-0px);
+    -webkit-transform: scale(.4) translateX(-0px);
+    }
+  }
+
+  #pbOverlay.on .prevNext:hover{
+    opacity: 1;
+  }
+
+}
+
 @mixin cdtop(){
   .cd-top{
     position: fixed;bottom: 146px;right: 47px;white-space: nowrap;visibility: hidden; opacity: 0;-webkit-transition: opacity .3s 0s, visibility 0s .3s;-o-transition: opacity .3s 0s, visibility 0s .3s;transition: opacity .3s 0s, visibility 0s .3s; z-index:100; border-radius:100%;
@@ -381,9 +462,7 @@ gallery top
    bottom: 30px;
    z-index: 10;
    cursor: pointer;
-   @media #{$media-mobile} {
-     display: none;
-   }
+
    .show{
    -webkit-animation-name: bounce;
    animation-name: bounce;
@@ -444,6 +523,7 @@ $backgruond => background contenitore
  $colorscritta => colore label
 */
 @mixin btn-mobile($backgruond,$coloricon,$fontsizeicon,$colorscritta,$fontsizescritta){
+  .buttons-mobile{
   width: 80%;
   height: 47px;
   position: fixed;
@@ -477,7 +557,7 @@ $backgruond => background contenitore
       a{
           display: block;
           text-decoration: none;
-      svg{
+      i{
         color: $coloricon;
         font-size: $fontsizeicon;
       }
@@ -489,6 +569,7 @@ $backgruond => background contenitore
       }
     }
   }
+ }
 }
 
 
@@ -644,7 +725,7 @@ proprietà css swipebox
 
 
 /*
-
+divas cookie
 */
 @mixin cookie($width,$fontsize,$bottom,$background,$color,$colorlink){
   .divascookies{
@@ -670,6 +751,39 @@ proprietà css swipebox
   }
 }
 
+/*banner cookie*/
+
+
+@mixin cookie-bar($fontsize,$background,$color,$bgaccept,$coloraccept,$bgpolicy,$colorpolicy){
+  #cookie-bar{
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    bottom: 0px;
+    padding: 13px;
+    background: $background;
+    font-size: $fontsize;
+    color: $color;
+    @media screen and (max-width:750px){
+       bottom: 90px;
+    }
+    .cb-enable{
+      background: $bgaccept;
+      color: $coloraccept;
+       &:hover{
+         background: #fff;
+       }
+    }
+    .cb-policy{
+      background: $bgpolicy;
+      color: $colorpolicy;
+      &:hover{
+        background: #fff;
+      }
+    }
+
+  }
+}
 /*
 $width => larghezza
 $backgruond => background contenitore
