@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const RemoveStrictPlugin = require( 'remove-strict-webpack-plugin' );
 var webpack = require('webpack');
 
 module.exports = {
@@ -78,7 +79,8 @@ module.exports = {
   }),
   new MiniCssExtractPlugin({
     filename: "../css/style.min.css"
-})
+}),
+  new RemoveStrictPlugin()
 ]
 
 };
