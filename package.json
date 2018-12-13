@@ -12,7 +12,7 @@
     "npm": "^6.4.1",
     "swiper": "^4.3.5",
     "webpack-cli": "^3.1.0",
-    "remove-strict-webpack-plugin": "^0.1.2",
+    "remove-strict-webpack-plugin": "^0.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^9.1.5",
@@ -27,7 +27,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -p --watch"
+    "build": "webpack -p"
   },
   "keywords": [],
   "author": "",
