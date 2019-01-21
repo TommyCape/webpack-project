@@ -4,7 +4,7 @@ const RemoveStrictPlugin = require( 'remove-strict-webpack-plugin' );
 var webpack = require('webpack');
 
 module.exports = {
-  entry: ['./public/assets/js/cookie/jquery.cookiebar.js','./public/assets/js/jquery-ui/jquery-ui.min.js','./public/assets/js/photobox/photobox/jquery.photobox.js','./public/assets/js/lingue_calendario/jquery.ui.datepicker-ita.min.js','./public/assets/js/lingue_calendario/jquery.ui.datepicker-eng.min.js','./public/assets/js/index.js','./public/assets/css/style.scss'],
+  entry: ['./public/assets/js/index.js','./public/assets/css/style.scss'],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './public/assets/js'),
@@ -15,6 +15,16 @@ module.exports = {
   watchOptions: {
     ignored: /node_modules/
   },
+  performance: {
+    hints: false
+  },
+  optimization: {
+    splitChunks: {
+      // include all types of chunks
+      chunks: 'all',
+      automaticNameDelimiter: '-'
+    }
+},
   module: {
   rules: [
     {
@@ -23,14 +33,16 @@ module.exports = {
             MiniCssExtractPlugin.loader,
             {
             loader:"css-loader",
-            options: {
-              sourceMap: true
-            }
+              options: {
+                sourceMap: true,
+                minimize: true
+              }
           },
               {
                 loader:"sass-loader",
                 options: {
-                sourceMap: true
+                sourceMap: true,
+                minimize: true
                 }
               },
                 {

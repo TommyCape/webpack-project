@@ -1,14 +1,62 @@
-@import '../js/jquery-ui/jquery-ui.min.css';
+@@import '../js/jquery-ui/jquery-ui.min.css';
 @import '../js/photobox/photobox/photobox.css';
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import '~aos/dist/aos.css';
 @import '~swiper/dist/css/swiper.min.css';
+@import './byomicons/stylesheet.css';
 @import '../js/cookie/jquery.cookiebar.css';
+@import "../js/hamburgers-master/dist/hamburgers.min.css";
 @import "blast_utility/core.scss";
-
+@import url(https://fonts.googleapis.com/css?family=Metrophobic);
 
 
 @include picture();
+@include photobox();
+@include cookie-bar(13px,#000,#fff,#fff,#000,#fff,#000);
+@include btn-mobile(#908579,#fff,20px,#fff,11px);
+#form_newsletter{
+  @include newsletter(80%,#fff,94px,50px,#908579,1.4rem);
+}
 
+.listaCatGallery{
+@include lista_cat_gallery(#000, #000, #908579, #908579);
+  li{
+    float: initial!important;
+    height: auto!important;
+    margin-bottom: 0px!important;
+    border: 1px solid #000;
+    &.active{
+      border: 1px solid #908579;
+    }
+
+  }
+}
+
+
+.gallery_minigallery{
+@include gallery_gen();
+  li{
+    width: 25%;
+    float: left;
+    height: auto;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    a{
+      picture{
+        padding-bottom: 100%;
+        height: auto;
+      }
+    }
+    @media screen and (max-width : 750px){
+      width: 49.5%;
+      height: auto;
+    }
+    &.hide{
+      display: none;
+    }
+  }
+
+}
 $font: "";
 
 html{
@@ -54,30 +102,7 @@ html{
        }
 
 
-       #cookie-bar{
-         position: fixed;
-         z-index: 100;
-         width: 100%;
-         bottom: 0px;
-         padding: 13px;
-         background: #e7d1c3;
-         font-size: 13px;
-         color: #000;
-       }
-
-
        body{
          &.scroll{
-           .menu-top{
-             top: 110px;
-           }
-           .header{
-             &__top{
-               height: 110px;
-               .lang-qr{
-                 margin-top: 10px;
-               }
-             }
-           }
          }
        }

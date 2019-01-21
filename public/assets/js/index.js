@@ -1,4 +1,11 @@
-import Swiper from 'swiper';
+import Swiper from 'swiper/dist/js/swiper.js';
+import AOS from 'aos';
+import Blazy from 'blazy';
+import cookieBar from './cookie/jquery.cookiebar.js';
+import jqueryui from './jquery-ui/jquery-ui.min.js';
+import photobox from './photobox/photobox/jquery.photobox.js';
+import datepicker_ita from './lingue_calendario/jquery.ui.datepicker-ita.min.js';
+import datepicker_eng from './lingue_calendario/jquery.ui.datepicker-eng.min.js';
 
 jQuery(document).ready(function( $ ) {
 
