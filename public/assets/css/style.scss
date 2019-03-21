@@ -10,12 +10,25 @@
 @import url(https://fonts.googleapis.com/css?family=Metrophobic);
 
 
+$font: 'Lato', sans-serif;
+
 @include picture();
 @include photobox();
 @include cookie-bar(13px,#000,#fff,#fff,#000,#fff,#000);
 @include btn-mobile(#908579,#fff,20px,#fff,11px);
 #form_newsletter{
-  @include newsletter(80%,#fff,94px,50px,#908579,1.4rem);
+  @include  newsletter(100%,#fff,100px,40px,#000,'');
+  .privacy_div{
+    input{
+      -webkit-appearance: checkbox;
+    }
+  }
+  input{
+    border: 1px solid;
+    &.btn{
+      text-align: center;
+    }
+  }
 }
 
 .listaCatGallery{
@@ -28,7 +41,6 @@
     &.active{
       border: 1px solid #908579;
     }
-
   }
 }
 
@@ -57,7 +69,6 @@
   }
 
 }
-$font: "";
 
 html{
       height: 100%;
