@@ -30,12 +30,7 @@ function menu($menu, $nav){
             $immagine_menu = $cube->getModulo("Immagine menu", $secondo_livello['id_pagina']);
              echo "<li ".(($secondo_livello['active']) ? "class=\"active\"" : "").">";
              echo "<a href=\"".$secondo_livello['link']."\">";
-             echo"<picture>
-                     <source media=\"(max-width: 750px)\" srcset=\"".$cube->getImg($immagine_menu[0]['files'])."\">
-                     <source media=\"(max-width: 1024px)\" srcset=\"".$cube->getImg($immagine_menu[0]['files'])."\">
-                     <img class=\"img\" src=\"".$cube->getImg($immagine_menu[0]['files'])."\" alt=\"\">
-                   </picture>";
-             echo "<div>".$secondo_livello['testo_link']."</div>";
+             echo $secondo_livello['testo_link'];
              echo "</a></li>";
            }
           echo "</ul>";
@@ -43,7 +38,7 @@ function menu($menu, $nav){
         echo "</li>";
       }
       echo "</ul></nav>";
-      }
+    }
   }
 }
 

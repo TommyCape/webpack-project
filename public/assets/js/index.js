@@ -8,39 +8,45 @@ import datepicker_ita from './lingue_calendario/jquery.ui.datepicker-ita.min.js'
 import datepicker_eng from './lingue_calendario/jquery.ui.datepicker-eng.min.js';
 
 jQuery(document).ready(function( $ ) {
-
-
-
   var mySwiperTop = new Swiper ('.gallery_top', {
         direction: 'horizontal',
         effect: 'fade',
-        autoplay: {
-          delay: 2000,
-        },
+        autoplay:2000,
         speed: 1500,
-        pagination: {
-          clickable: true,
-          el: '.gallery_top .swiper-pagination',
-          type: 'bullets',
-        },
-        autoplay: {
-          disableOnInteraction: true
-        },
-        loop: true
+        autoplayDisableOnInteraction: true,
+        loop: true,
+        pagination: '.gallery_top .swiper-pagination',
+        paginationClickable: true,
     });
 
 
-  var mySwiperOfSlide = new Swiper ('.off-slide', {
-       direction: 'horizontal',
-       speed: 1300,
-       spaceBetween: 45,
-       autoplay: {
+    var mySwiperOfSlide = new Swiper ('.off-slide', {
+         direction: 'horizontal',
+         speed: 1300,
+         spaceBetween: 2,
          delay: 800,
-       },
-       effect: 'slide',
-       loop: true,
-       slidesPerView: 1,
+        autoplayDisableOnInteraction: true,
+         effect: 'fade',
+         autoplay:2000,
+         loop: true,
+         slidesPerView: 1,
+         //lazyLoading: true,
+         //preloadImages:false
         });
+
+        var mySwiperOfSlide2 = new Swiper ('.off-slide2', {
+             direction: 'horizontal',
+             speed: 1300,
+             spaceBetween: 2,
+             delay: 800,
+            autoplayDisableOnInteraction: true,
+             effect: 'fade',
+             autoplay:2000,
+             loop: true,
+             slidesPerView: 1,
+
+            });
+
 
         $("#lang").change(function() {
         $(".lang").html($("#lang option:selected").text());
